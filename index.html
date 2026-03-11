@@ -474,32 +474,65 @@ function nextQuestion() {
 }
 
 function submitLead() {
-  if (!document.getElementById('consent-check').checked) {
-    document.querySelector('.consent-text').style.color = '#ff6b6b';
-    setTimeout(() => document.querySelector('.consent-text').style.color = '', 1200);
-    return;
-  }
   const name  = document.getElementById('inp-name').value.trim();
   const phone = document.getElementById('inp-phone').value.trim();
   const email = document.getElementById('inp-email').value.trim();
+
+  // Validate all fields
+  let error = '';
+  if (!name)                              error = 'name missing.';
+  else if (!/^[0-9]{10}$/.test(phone))   error = 'need a valid 10-digit number.';
+  else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) error = 'that email looks off.';
+  else if (!document.getElementById('consent-check').checked) error = 'tick the box first.';
+
+  if (error) {
+    const el = document.querySelector('.consent-text');
+    const orig = el.textContent;
+    el.textContent = error;
+    el.style.color = '#ff6b6b';
+    setTimeout(() => { el.textContent = orig; el.style.color = ''; }, 2000);
+    return;
+  }
 
   const payload = {
     session_id: sessionId,
     timestamp: new Date().toISOString(),
     name, phone, email,
-    answers: sessionLog   // [{ qid:'Q01', chose:'left' }, ...]
+    answers: sessionLog
   };
 
-  fetch(WEBHOOK_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  }).catch(e => console.log('submit error:', e));
+  // Show sending state
+  const btn = document.querySelector('.confess-btn');
+  btn.textContent = 'sending...';
+  btn.disabled = true;
 
-  postLead = true;
-  showScreen('game-screen');
-  loadQuestion();
+  // Use a form POST via hidden iframe — avoids CORS entirely
+  // Google Apps Script receives it as a proper POST
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = WEBHOOK_URL;
+  form.target = 'hidden-iframe';
+  form.style.display = 'none';
+
+  const input = document.createElement('input');
+  input.type = 'hidden';
+  input.name = 'data';
+  input.value = JSON.stringify(payload);
+  form.appendChild(input);
+
+  const iframe = document.createElement('iframe');
+  iframe.name = 'hidden-iframe';
+  iframe.style.display = 'none';
+  document.body.appendChild(iframe);
+  document.body.appendChild(form);
+  form.submit();
+
+  // Proceed after short delay to let POST fire
+  setTimeout(() => {
+    postLead = true;
+    showScreen('game-screen');
+    loadQuestion();
+  }, 800);
 }
 
 function showEndScreen() {
