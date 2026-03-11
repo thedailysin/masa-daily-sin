@@ -84,7 +84,7 @@
   }
   .q-text {
     font-size: clamp(24px, 7vw, 40px); line-height: 1.25;
-    color: var(--white); max-width: 340px; position: relative; z-index: 2;
+    color: var(--white); max-width: 340px; position: relative; z-index: 2; word-break: keep-all; overflow-wrap: break-word;
   }
   .q-text .float-char {
     display: inline-block;
@@ -213,9 +213,7 @@
 
 <!-- GAME -->
 <div class="screen" id="game-screen">
-  <div class="top-bar">
-    <div class="pool-badge" id="pool-badge">GROUNDED</div>
-  </div>
+  <div class="top-bar"></div>
   <div class="progress-dots" id="progress-dots"></div>
   <div class="q-area">
     <svg class="q-doodle" id="q-doodle" width="200" height="200" viewBox="0 0 200 200" fill="none"></svg>
@@ -264,6 +262,7 @@
 const QUESTIONS_POOL = [
   { id:'Q01', pool:'GROUNDED',  text:"You've ordered Zomato.\nThen you remember you're supposed to go to the gym.", left:'Cancel the order', right:'Cancel the gym', pct:{left:21,right:79}, consequence:'your gym bag is judging you.', doodle:'food' },
   { id:'Q02', pool:'GROUNDED',  text:"It's your bhua's birthday.", left:'Call her', right:"React 👍 to your cousin's message in the family group", pct:{left:38,right:62}, consequence:'bhua has seen your story btw.', doodle:'phone' },
+  { id:'Q00', pool:'GROUNDED',  text:'30 mins for lunch. Healthy salad arrives in 5 mins.\nBurger arrives in 10 mins.', left:'Salad', right:'Burger', pct:{left:19,right:81}, consequence:'your gut already knew.', doodle:'fork' },
   { id:'Q03', pool:'GROUNDED',  text:'Your annoying coworker is celebrating their birthday at a really good restaurant.', left:'Go for the food', right:'Skip it', pct:{left:61,right:39}, consequence:'the biryani was worth it.', doodle:'fork' },
   { id:'Q04', pool:'GROUNDED',  text:'Flat cola or very very bad coffee.', left:'Cola', right:'Coffee', pct:{left:48,right:52}, consequence:'both are crimes. you picked yours.', doodle:'squiggle' },
   { id:'Q05', pool:'GROUNDED',  text:'Chai in venti cup or coffee in cutting glass.', left:'Venti chai', right:'Cutting coffee', pct:{left:62,right:38}, consequence:'the wrong vessel changes everything.', doodle:'cup' },
@@ -289,7 +288,7 @@ const DOODLES = {
 };
 
 // FLOATING WORDS
-const FLOAT_WORDS = ['sin','confess','choose','guilty','vibes','regret','own it','or...','yikes','classic','same','mood','anyway','next','scroll','more','again','bro','literally','okay but','wait','honestly','fine','whatever','both bad','neither','help','lol','no cap','oof'];
+const FLOAT_WORDS = ['Procrastination','Overthinking','Doomscrolling','Snacking','Binging','Ghosting','Flaking','Lurking','Stalking','Simping','Bragging','Flexing','Oversharing','Trolling','Complaining','Whining','Ranting','Judging','Comparing','Envying','FOMO','Craving','Indulging','Cheating','Lying','Excusing','Deflecting','Avoiding','Forgetting','Ignoring','Canceling','Delaying','Stalling','Multitasking','Overworking','Burnout','Addiction','Distraction','Temptation','Impulsing','Splurging','Hoarding','Scrolling','Streaming','Gaming','Napping','Slacking','Skipping','Relapsing','Gossiping','Mocking','Pretending','Posturing','Peacocking','Sabotaging','Daydreaming','Escaping','Regretting'];
 (function(){
   const layer = document.getElementById('float-layer');
   FLOAT_WORDS.forEach(w => {
@@ -307,8 +306,27 @@ const FLOAT_WORDS = ['sin','confess','choose','guilty','vibes','regret','own it'
 
 // MUSIC
 const audio = new Audio('https://raw.githubusercontent.com/thedailysin/masa-daily-sin/main/monument_music-dream-by-dreams-143531.mp3');
-audio.loop = true; audio.volume = 0.6;
+audio.loop = true; audio.volume = 0;
+// Autoplay muted immediately — browser allows this
+audio.play().catch(e => console.log('autoplay blocked:', e));
 let musicOn = false;
+
+function unlockMusic() {
+  // Called on first user gesture — ramp volume up
+  audio.volume = 0;
+  audio.play().catch(()=>{});
+  musicOn = true;
+  const btn = document.getElementById('music-btn');
+  btn.textContent = '♪ ON'; btn.classList.add('on');
+  // Fade in over 1.5s
+  let v = 0;
+  const ramp = setInterval(() => {
+    v = Math.min(v + 0.04, 0.6);
+    audio.volume = v;
+    if (v >= 0.6) clearInterval(ramp);
+  }, 100);
+}
+
 function toggleMusic() {
   if (musicOn) {
     audio.pause(); musicOn = false;
@@ -317,6 +335,7 @@ function toggleMusic() {
   } else {
     audio.play().catch(e => console.log('play error:', e));
     musicOn = true;
+    audio.volume = 0.6;
     document.getElementById('music-btn').textContent = '♪ ON';
     document.getElementById('music-btn').classList.add('on');
   }
@@ -341,7 +360,10 @@ function shuffle(arr) {
 }
 
 function startGame() {
-  QUESTIONS = shuffle(QUESTIONS_POOL);
+  if (!musicOn) unlockMusic();
+  const pinned = QUESTIONS_POOL.filter(q => ['Q01','Q02','Q00'].includes(q.id)).sort((a,b) => ['Q01','Q02','Q00'].indexOf(a.id) - ['Q01','Q02','Q00'].indexOf(b.id));
+  const rest   = shuffle(QUESTIONS_POOL.filter(q => !['Q01','Q02','Q00'].includes(q.id)));
+  QUESTIONS = [...pinned, ...rest];
   buildDots();
   showScreen('game-screen');
   loadQuestion();
@@ -386,7 +408,6 @@ function loadQuestion() {
   if (currentQ >= QUESTIONS.length) { showEndScreen(); return; }
 
   const q = QUESTIONS[currentQ];
-  document.getElementById('pool-badge').textContent = q.pool;
   updateDots();
 
   const lb = document.getElementById('left-btn'), rb = document.getElementById('right-btn');
