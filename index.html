@@ -21,7 +21,6 @@
     background-size: 200px 200px; z-index: 9999;
   }
 
-  /* FLOATING WORDS */
   #float-layer { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
   .float-word {
     position: absolute; font-family: var(--font); color: rgba(45,106,45,0.09);
@@ -34,7 +33,6 @@
     100% { transform: translateY(-15vh) rotate(5deg); opacity: 0; }
   }
 
-  /* SCREENS */
   .screen {
     position: fixed; inset: 0; display: flex; flex-direction: column;
     align-items: center; justify-content: center;
@@ -42,7 +40,6 @@
   }
   .screen.active { opacity: 1; pointer-events: all; }
 
-  /* MUSIC BTN */
   #music-btn {
     position: fixed; top: 14px; right: 14px; z-index: 1000;
     background: transparent; border: 1px solid rgba(45,106,45,0.45);
@@ -63,17 +60,14 @@
   /* INTRO */
   #intro-screen { gap: 32px; padding: 32px; text-align: center; }
   .intro-title {
-    font-size: clamp(40px, 11vw, 62px); line-height: 1;
+    font-size: clamp(40px,11vw,62px); line-height: 1;
     color: var(--green-bright); text-shadow: 0 0 40px rgba(45,106,45,0.5);
   }
   .intro-title span { display: block; font-size: 48%; color: rgba(255,255,255,0.28); margin-top: 6px; }
-  .intro-sub {
-    font-size: clamp(16px, 4.5vw, 22px); color: rgba(255,255,255,0.55);
-    line-height: 1.6; max-width: 300px;
-  }
+  .intro-sub { font-size: clamp(16px,4.5vw,22px); color: rgba(255,255,255,0.55); line-height: 1.6; max-width: 300px; }
   .start-btn {
     background: var(--green); color: var(--white); border: none;
-    padding: 18px 52px; font-family: var(--font); font-size: clamp(22px, 6vw, 30px);
+    padding: 18px 52px; font-family: var(--font); font-size: clamp(22px,6vw,30px);
     border-radius: 4px; cursor: pointer; letter-spacing: 1px;
     box-shadow: 0 0 30px rgba(45,106,45,0.3); transition: transform 0.1s;
   }
@@ -81,51 +75,33 @@
 
   /* GAME */
   #game-screen { padding: 0; justify-content: space-between; }
-
-  .top-bar {
-    width: 100%; padding: 16px 20px 8px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .progress-dots {
-    display: flex; gap: 5px; align-items: center; flex-wrap: wrap; justify-content: center;
-  }
-  .dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: rgba(255,255,255,0.12); transition: background 0.3s, transform 0.3s; flex-shrink: 0;
-  }
+  .top-bar { width: 100%; padding: 16px 20px 8px; display: flex; align-items: center; justify-content: center; }
+  .progress-dots { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; justify-content: center; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.12); transition: background 0.3s, transform 0.3s; flex-shrink: 0; }
   .dot.done { background: var(--green); }
   .dot.current { background: var(--white); transform: scale(1.5); }
   .dot.product { border: 1.5px solid var(--green-bright); background: transparent; }
   .dot.product.done { background: var(--green-bright); }
   .dot.product.current { background: var(--white); }
 
-  /* QUESTION AREA — big, centered, breathing room */
   .q-area {
     flex: 1; display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     padding: 28px 32px; text-align: center;
   }
-  .product-tag {
-    font-size: 11px; color: var(--green-bright);
-    letter-spacing: 3px; margin-bottom: 16px; opacity: 0.8; display: block;
-  }
+  .product-tag { font-size: 11px; color: var(--green-bright); letter-spacing: 3px; margin-bottom: 16px; opacity: 0.8; display: block; }
   .q-text {
-    font-size: clamp(28px, 8vw, 48px); line-height: 1.3;
+    font-size: clamp(28px,8vw,48px); line-height: 1.3;
     color: var(--white); max-width: 360px;
     word-break: normal; overflow-wrap: normal; hyphens: none;
     animation: fadeSlideIn 0.45s ease both;
   }
 
-  /* BOTTOM SECTION */
   .bottom-section { width: 100%; display: flex; flex-direction: column; }
-
-  .choices {
-    width: 100%; display: grid; grid-template-columns: 1fr 1fr;
-    border-top: 1px solid rgba(45,106,45,0.25);
-  }
+  .choices { width: 100%; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(45,106,45,0.25); }
   .choice-btn {
     background: transparent; border: none; color: var(--white);
-    font-family: var(--font); font-size: clamp(20px, 5.5vw, 30px);
+    font-family: var(--font); font-size: clamp(20px,5.5vw,30px);
     padding: 28px 18px; cursor: pointer; text-align: center;
     line-height: 1.25; transition: background 0.15s;
     word-break: normal; overflow-wrap: normal; hyphens: none;
@@ -133,22 +109,16 @@
   .choice-btn:first-child { border-right: 1px solid rgba(45,106,45,0.25); }
   .choice-btn:active { background: rgba(45,106,45,0.15); }
 
-  /* SHARE BUTTON */
-  .share-bar {
-    width: 100%; padding: 14px 20px;
-    border-top: 1px solid rgba(45,106,45,0.15);
-    display: flex; align-items: center; justify-content: center;
-  }
+  .share-bar { width: 100%; padding: 14px 20px; border-top: 1px solid rgba(45,106,45,0.15); display: flex; align-items: center; justify-content: center; }
   .share-btn {
     background: transparent; border: none; color: rgba(255,255,255,0.35);
-    font-family: var(--font); font-size: clamp(13px, 3.2vw, 16px);
+    font-family: var(--font); font-size: clamp(13px,3.2vw,16px);
     cursor: pointer; letter-spacing: 0.5px; transition: color 0.2s; padding: 4px 8px;
     text-decoration: none; display: inline-block;
   }
   .share-btn:active, .share-btn:hover { color: var(--green-bright); }
   .share-btn.product-link { color: rgba(45,106,45,0.7); }
 
-  /* TOAST */
   #toast {
     position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px);
     background: var(--green); color: var(--white); font-family: var(--font);
@@ -157,28 +127,24 @@
   }
   #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-  /* CONSEQUENCE */
+  /* CONSEQUENCE — stays 2-3s longer */
   #consequence-screen { background: #000; }
   .consequence-text {
-    font-size: clamp(20px, 5.5vw, 30px); color: var(--green-bright);
+    font-size: clamp(20px,5.5vw,30px); color: var(--green-bright);
     text-align: center; padding: 32px; line-height: 1.5; max-width: 340px;
   }
   @keyframes consequencePulse {
     0%  { opacity:0; transform:scale(0.85); }
-    20% { opacity:1; transform:scale(1.03); }
-    80% { opacity:1; transform:scale(1); }
+    12% { opacity:1; transform:scale(1.03); }
+    75% { opacity:1; transform:scale(1); }
     100%{ opacity:0; }
   }
-  .consequence-pulse .consequence-text { animation: consequencePulse 1.2s ease forwards; }
+  .consequence-pulse .consequence-text { animation: consequencePulse 2.8s ease forwards; }
 
   /* COUNTER */
   #counter-screen { gap: 20px; padding: 32px; text-align: center; }
   .you-chose { font-size: clamp(13px,3vw,16px); color: rgba(255,255,255,0.3); letter-spacing: 2px; text-transform: uppercase; }
-  .chosen-label {
-    font-size: clamp(26px,7.5vw,42px); color: var(--green-bright);
-    line-height: 1.15; text-shadow: 0 0 30px rgba(45,106,45,0.4);
-    max-width: 320px; word-break: normal; hyphens: none;
-  }
+  .chosen-label { font-size: clamp(26px,7.5vw,42px); color: var(--green-bright); line-height: 1.15; text-shadow: 0 0 30px rgba(45,106,45,0.4); max-width: 320px; word-break: normal; hyphens: none; }
   .pct-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
   .pct-number {
     font-size: clamp(64px,18vw,100px); color: var(--white); line-height: 1;
@@ -209,24 +175,14 @@
   .lead-input::placeholder { color: rgba(255,255,255,0.22); }
   .lead-input:focus { border-color: var(--green-bright); }
   .consent-wrap { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; text-align: left; }
-  .consent-wrap input[type="checkbox"] {
-    margin-top: 3px; width: 18px; height: 18px; min-width: 18px;
-    accent-color: var(--green-bright); cursor: pointer;
-  }
-  .consent-text {
-    font-size: clamp(11px,2.7vw,13px); color: rgba(255,255,255,0.32);
-    line-height: 1.55; font-family: var(--font); transition: color 0.3s;
-  }
-  .confess-btn {
-    background: var(--green); color: var(--white); border: none; padding: 15px;
-    font-family: var(--font); font-size: clamp(20px,5vw,26px);
-    border-radius: 4px; cursor: pointer; transition: transform 0.1s;
-  }
+  .consent-wrap input[type="checkbox"] { margin-top: 3px; width: 18px; height: 18px; min-width: 18px; accent-color: var(--green-bright); cursor: pointer; }
+  .consent-text { font-size: clamp(11px,2.7vw,13px); color: rgba(255,255,255,0.32); line-height: 1.55; font-family: var(--font); transition: color 0.3s; }
+  .confess-btn { background: var(--green); color: var(--white); border: none; padding: 15px; font-family: var(--font); font-size: clamp(20px,5vw,26px); border-radius: 4px; cursor: pointer; transition: transform 0.1s; }
   .confess-btn:active { transform: scale(0.97); }
 
   /* BACK POPUP */
   #back-popup {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+    position: fixed; inset: 0; background: rgba(0,0,0,0.88);
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     gap: 24px; padding: 32px; z-index: 5000; text-align: center;
     opacity: 0; pointer-events: none; transition: opacity 0.25s;
@@ -235,28 +191,17 @@
   .popup-title { font-size: clamp(22px,6vw,32px); color: var(--white); line-height: 1.3; }
   .popup-btn {
     background: transparent; border: 2px solid var(--green); color: var(--white);
-    font-family: var(--font); font-size: clamp(16px,4vw,20px);
+    font-family: var(--font); font-size: clamp(15px,3.8vw,19px);
     padding: 14px 24px; border-radius: 4px; cursor: pointer; width: 100%; max-width: 300px;
-    transition: background 0.2s;
+    transition: background 0.2s; line-height: 1.3;
   }
   .popup-btn:active { background: rgba(45,106,45,0.3); }
   .popup-btn.primary { background: var(--green); }
 
-  /* ANIMATIONS */
-  @keyframes fadeSlideIn {
-    0%  { opacity:0; transform:translateY(18px); }
-    100%{ opacity:1; transform:translateY(0); }
-  }
-  @keyframes fadeOut {
-    0%  { opacity:1; }
-    100%{ opacity:0; transform:scale(0.88); filter:blur(3px); }
-  }
+  @keyframes fadeSlideIn { 0%{opacity:0;transform:translateY(18px)} 100%{opacity:1;transform:translateY(0)} }
+  @keyframes fadeOut { 0%{opacity:1} 100%{opacity:0;transform:scale(0.88);filter:blur(3px)} }
   .unchosen-fade { animation: fadeOut 0.3s ease forwards; pointer-events: none; }
-  .chosen-glow {
-    background: rgba(45,106,45,0.22) !important;
-    box-shadow: inset 0 0 40px rgba(45,106,45,0.25);
-    transition: all 0.2s !important;
-  }
+  .chosen-glow { background: rgba(45,106,45,0.22) !important; box-shadow: inset 0 0 40px rgba(45,106,45,0.25); transition: all 0.2s !important; }
 </style>
 </head>
 <body>
@@ -338,13 +283,10 @@
 
 <script>
 // ── CONFIG ──
-const SHEET_ID   = '1gPGhA7YXo73PE6OtmU0GoCG6nYQrSCryhzhfhl8JIBc';
-const SHEET_TAB  = 'Questions';
-const WEBHOOK    = 'https://script.google.com/macros/s/AKfycbz0LeqYK_BEFXb0WLul9gVyk5oWspym-gNA1_mHGRensZPco-sHQ0K0ZALkbjpRhEnR/exec';
-const MUSIC_URL  = 'https://raw.githubusercontent.com/thedailysin/masa-daily-sin/main/monument_music-dream-by-dreams-143531.mp3';
-const SITE_URL   = 'https://thedailysin.github.io/masa-daily-sin';
-const PRODUCT_URL= 'https://thedailysin.com';
-const LEAD_AT    = 7; // show form after this many questions
+const WEBHOOK     = 'https://script.google.com/macros/s/AKfycbz0LeqYK_BEFXb0WLul9gVyk5oWspym-gNA1_mHGRensZPco-sHQ0K0ZALkbjpRhEnR/exec';
+const SITE_URL    = 'https://thedailysin.github.io/masa-daily-sin';
+const PRODUCT_URL = 'https://thedailysin.com';
+const LEAD_AT     = 7;
 
 // ── FLOATING WORDS ──
 const FLOAT_WORDS = ['Procrastination','Overthinking','Doomscrolling','Snacking','Binging','Ghosting','Flaking','Lurking','Stalking','Simping','Bragging','Flexing','Oversharing','Trolling','Complaining','Whining','Ranting','Judging','Comparing','Envying','FOMO','Craving','Indulging','Cheating','Lying','Excusing','Deflecting','Avoiding','Forgetting','Ignoring','Canceling','Delaying','Stalling','Multitasking','Overworking','Burnout','Addiction','Distraction','Temptation','Impulsing','Splurging','Hoarding','Scrolling','Streaming','Gaming','Napping','Slacking','Skipping','Relapsing','Gossiping','Mocking','Pretending','Posturing','Peacocking','Sabotaging','Daydreaming','Escaping','Regretting'];
@@ -353,9 +295,9 @@ const FLOAT_WORDS = ['Procrastination','Overthinking','Doomscrolling','Snacking'
   FLOAT_WORDS.forEach(w => {
     const el = document.createElement('div');
     el.className = 'float-word'; el.textContent = w;
-    el.style.left = (4 + Math.random()*88)+'%';
-    el.style.fontSize = (13 + Math.random()*13)+'px';
-    const dur = 14 + Math.random()*22;
+    el.style.left = (4+Math.random()*88)+'%';
+    el.style.fontSize = (13+Math.random()*13)+'px';
+    const dur = 14+Math.random()*22;
     el.style.animationDuration = dur+'s';
     el.style.animationDelay = -(Math.random()*dur)+'s';
     layer.appendChild(el);
@@ -363,7 +305,7 @@ const FLOAT_WORDS = ['Procrastination','Overthinking','Doomscrolling','Snacking'
 })();
 
 // ── MUSIC ──
-const audio = new Audio(MUSIC_URL);
+const audio = new Audio('https://raw.githubusercontent.com/thedailysin/masa-daily-sin/main/monument_music-dream-by-dreams-143531.mp3');
 audio.loop = true; audio.volume = 0;
 audio.play().catch(()=>{});
 let musicOn = false;
@@ -377,50 +319,39 @@ function unlockMusic() {
 }
 function toggleMusic() {
   if (musicOn) {
-    audio.pause(); musicOn = false;
-    document.getElementById('music-btn').textContent = '♪ OFF';
+    audio.pause(); musicOn=false;
+    document.getElementById('music-btn').textContent='♪ OFF';
     document.getElementById('music-btn').classList.remove('on');
   } else {
-    audio.play().catch(()=>{}); musicOn = true; audio.volume = 0.6;
-    document.getElementById('music-btn').textContent = '♪ ON';
+    audio.play().catch(()=>{}); musicOn=true; audio.volume=0.6;
+    document.getElementById('music-btn').textContent='♪ ON';
     document.getElementById('music-btn').classList.add('on');
   }
 }
 
 // ── STATE ──
-let ALL_QUESTIONS = [];
-let QUESTIONS     = [];
-let currentQ      = 0;
-let postLead      = false;
-let currentSide   = null;
-const sessionId   = Math.random().toString(36).slice(2,10).toUpperCase();
-const sessionLog  = [];
+let ALL_QUESTIONS = [], QUESTIONS = [], currentQ = 0, postLead = false;
+const sessionId  = Math.random().toString(36).slice(2,10).toUpperCase();
+const sessionLog = [];
 
-// ── FETCH QUESTIONS FROM SHEET ──
+// ── FETCH QUESTIONS via Apps Script (no CORS issues) ──
 async function loadQuestions() {
-  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_TAB)}`;
   try {
-    const res  = await fetch(url);
-    const text = await res.text();
-    // Strip Google's wrapper: /*O_o*/\ngoogle.visualization.Query.setResponse(...)
-    const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1]);
-    const rows = json.table.rows;
-    // Columns: 0=QID, 1=Question, 2=OptionL, 3=OptionR, 4=Pool, 5=ResponseL, 6=ResponseR
-    ALL_QUESTIONS = rows.map(r => ({
-      id:          r.c[0]?.v || '',
-      text:        r.c[1]?.v || '',
-      left:        r.c[2]?.v || '',
-      right:       r.c[3]?.v || '',
-      pool:        parseInt(r.c[4]?.v) || 1,
-      responseL:   r.c[5]?.v || 'you chose this.',
-      responseR:   r.c[6]?.v || 'you chose this.',
-      isProduct:   String(r.c[0]?.v || '').startsWith('P'),
-      pct:         { left: Math.floor(30+Math.random()*40), right: 0 }
-    })).filter(q => q.id && q.text);
-
-    // Fix pct right
+    const res  = await fetch(WEBHOOK + '?action=getQuestions');
+    const json = await res.json();
+    if (!json.questions || !json.questions.length) throw new Error('No questions returned');
+    ALL_QUESTIONS = json.questions.map(q => ({
+      id:        String(q.id),
+      text:      q.text,
+      left:      q.left,
+      right:     q.right,
+      pool:      parseInt(q.pool) || 1,
+      responseL: q.responseL || 'you chose this.',
+      responseR: q.responseR || 'you chose this.',
+      isProduct: String(q.id).toUpperCase().startsWith('P'),
+      pct:       { left: Math.floor(30+Math.random()*40), right: 0 }
+    }));
     ALL_QUESTIONS.forEach(q => q.pct.right = 100 - q.pct.left);
-
     return true;
   } catch(e) {
     console.error('Sheet load failed:', e);
@@ -430,27 +361,25 @@ async function loadQuestions() {
 
 // ── SHUFFLE ──
 function shuffle(arr) {
-  const a = [...arr];
-  for (let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
   return a;
 }
 
-// ── BUILD QUESTION ORDER ──
-// Q1, Q2, Q3 always first in order, rest shuffled
+// ── BUILD ORDER: Q1, Q2, Q3 pinned first, rest shuffled ──
 function buildOrder() {
-  const pinned  = ['Q1','Q2','Q3'];
-  const first   = pinned.map(id => ALL_QUESTIONS.find(q => q.id === id)).filter(Boolean);
-  const rest    = shuffle(ALL_QUESTIONS.filter(q => !pinned.includes(q.id)));
-  QUESTIONS     = [...first, ...rest];
+  const pinned = ['Q1','Q2','Q3'];
+  const first  = pinned.map(id => ALL_QUESTIONS.find(q => q.id===id)).filter(Boolean);
+  const rest   = shuffle(ALL_QUESTIONS.filter(q => !pinned.includes(q.id)));
+  QUESTIONS    = [...first, ...rest];
 
-  // Check if deep-linking to a specific question
-  const params  = new URLSearchParams(window.location.search);
-  const deepQ   = params.get('q');
+  // Deep link — jump to specific question
+  const params = new URLSearchParams(window.location.search);
+  const deepQ  = params.get('q');
   if (deepQ) {
-    const idx   = QUESTIONS.findIndex(q => q.id === deepQ);
+    const idx = QUESTIONS.findIndex(q => q.id === deepQ);
     if (idx > 0) {
-      // Move target question to front, keep rest
-      const target = QUESTIONS.splice(idx, 1)[0];
+      const target = QUESTIONS.splice(idx,1)[0];
       QUESTIONS.unshift(target);
     }
   }
@@ -469,7 +398,7 @@ window.addEventListener('load', async () => {
 
 // ── SCREENS ──
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
@@ -483,16 +412,16 @@ function startGame() {
 
 // ── DOTS ──
 function buildDots() {
-  const c = document.getElementById('progress-dots'); c.innerHTML='';
-  QUESTIONS.forEach((q,i) => {
-    const d = document.createElement('div');
-    d.className = 'dot'+(q.isProduct?' product':'');
-    d.id = `dot-${i}`; c.appendChild(d);
+  const c=document.getElementById('progress-dots'); c.innerHTML='';
+  QUESTIONS.forEach((q,i)=>{
+    const d=document.createElement('div');
+    d.className='dot'+(q.isProduct?' product':'');
+    d.id=`dot-${i}`; c.appendChild(d);
   }); updateDots();
 }
 function updateDots() {
-  QUESTIONS.forEach((_,i) => {
-    const d = document.getElementById(`dot-${i}`); if(!d)return;
+  QUESTIONS.forEach((_,i)=>{
+    const d=document.getElementById(`dot-${i}`); if(!d)return;
     d.classList.remove('current','done');
     if(i<currentQ) d.classList.add('done');
     else if(i===currentQ) d.classList.add('current');
@@ -501,31 +430,26 @@ function updateDots() {
 
 // ── LOAD QUESTION ──
 function loadQuestion() {
-  if (!postLead && currentQ === LEAD_AT) { showLeadCapture(); return; }
-  if (currentQ >= QUESTIONS.length)      { showEndScreen(); return; }
+  if (!postLead && currentQ===LEAD_AT) { showLeadCapture(); return; }
+  if (currentQ>=QUESTIONS.length)      { showEndScreen(); return; }
 
   const q = QUESTIONS[currentQ];
   updateDots();
 
-  // Product tag
   const tag = document.getElementById('product-tag');
   tag.style.display = q.isProduct ? 'block' : 'none';
 
-  // Question text — NO character wrapping, plain text, browser handles line breaks
   const qText = document.getElementById('q-text');
   qText.textContent = q.text;
-  // Re-trigger animation
-  qText.style.animation = 'none'; void qText.offsetWidth;
-  qText.style.animation = 'fadeSlideIn 0.45s ease both';
+  qText.style.animation='none'; void qText.offsetWidth;
+  qText.style.animation='fadeSlideIn 0.45s ease both';
 
-  // Choices
-  const lb = document.getElementById('left-btn'), rb = document.getElementById('right-btn');
-  lb.className = 'choice-btn'; rb.className = 'choice-btn';
-  lb.style.cssText = ''; rb.style.cssText = '';
-  lb.disabled = false; rb.disabled = false;
-  lb.textContent = q.left; rb.textContent = q.right;
+  const lb=document.getElementById('left-btn'), rb=document.getElementById('right-btn');
+  lb.className='choice-btn'; rb.className='choice-btn';
+  lb.style.cssText=''; rb.style.cssText='';
+  lb.disabled=false; rb.disabled=false;
+  lb.textContent=q.left; rb.textContent=q.right;
 
-  // Share button
   const shareBtn = document.getElementById('share-btn');
   if (q.isProduct) {
     shareBtn.textContent = "I haven't tried it yet";
@@ -538,47 +462,37 @@ function loadQuestion() {
 
 // ── CHOOSE ──
 function choose(side) {
-  const q = QUESTIONS[currentQ];
-  currentSide = side;
-  sessionLog.push({ qid: q.id, chose: side });
-
-  const lb = document.getElementById('left-btn'), rb = document.getElementById('right-btn');
-  lb.disabled = true; rb.disabled = true;
-  const chosen   = side==='left' ? lb : rb;
-  const unchosen = side==='left' ? rb : lb;
+  const q=QUESTIONS[currentQ];
+  sessionLog.push({ qid:q.id, chose:side });
+  const lb=document.getElementById('left-btn'), rb=document.getElementById('right-btn');
+  lb.disabled=true; rb.disabled=true;
+  const chosen=side==='left'?lb:rb, unchosen=side==='left'?rb:lb;
   chosen.classList.add('chosen-glow');
   unchosen.classList.add('unchosen-fade');
-  setTimeout(() => showConsequence(q, side), 360);
+  setTimeout(()=>showConsequence(q,side), 360);
 }
 
-// ── CONSEQUENCE ──
+// ── CONSEQUENCE — 2.8s ──
 function showConsequence(q, side) {
-  const cs = document.getElementById('consequence-screen');
-  const response = side === 'left' ? q.responseL : q.responseR;
-  document.getElementById('consequence-text').textContent = response;
-  cs.className = 'screen active consequence-pulse';
-  setTimeout(()=>cs.classList.remove('consequence-pulse'), 1300);
-  setTimeout(()=>showCounter(q, side), 1300);
+  const cs=document.getElementById('consequence-screen');
+  document.getElementById('consequence-text').textContent = side==='left' ? q.responseL : q.responseR;
+  cs.className='screen active consequence-pulse';
+  setTimeout(()=>{ cs.classList.remove('consequence-pulse'); showCounter(q,side); }, 2800);
 }
 
 // ── COUNTER ──
 function showCounter(q, side) {
   showScreen('counter-screen');
-  const pct   = side==='left' ? q.pct.left : q.pct.right;
-  const label = side==='left' ? q.left     : q.right;
-  document.getElementById('chosen-label').textContent = label;
-  const pctEl   = document.getElementById('pct-number');
-  const nextBtn = document.getElementById('next-btn');
+  const pct=side==='left'?q.pct.left:q.pct.right;
+  const label=side==='left'?q.left:q.right;
+  document.getElementById('chosen-label').textContent=label;
+  const pctEl=document.getElementById('pct-number'), nextBtn=document.getElementById('next-btn');
   pctEl.classList.remove('revealed'); nextBtn.classList.remove('visible');
-  pctEl.textContent = '0%';
-  setTimeout(()=>pctEl.classList.add('revealed'), 80);
-  let cur = 0;
-  const iv = setInterval(()=>{
-    cur = Math.min(cur+Math.ceil(pct/28), pct);
-    pctEl.textContent = cur+'%';
-    if(cur>=pct) clearInterval(iv);
-  }, 38);
-  setTimeout(()=>nextBtn.classList.add('visible'), 1100);
+  pctEl.textContent='0%';
+  setTimeout(()=>pctEl.classList.add('revealed'),80);
+  let cur=0;
+  const iv=setInterval(()=>{ cur=Math.min(cur+Math.ceil(pct/28),pct); pctEl.textContent=cur+'%'; if(cur>=pct)clearInterval(iv); },38);
+  setTimeout(()=>nextBtn.classList.add('visible'),1100);
 }
 
 function nextQuestion() { currentQ++; showScreen('game-screen'); setTimeout(loadQuestion,80); }
@@ -591,85 +505,65 @@ function handleShare() {
     return;
   }
   const url = `${SITE_URL}?q=${q.id}`;
+  const msg = `I just did something questionable and I need to know if you would too.\n\n${q.text}\n\n👈 ${q.left}  or  ${q.right} 👉\n\n${url}`;
   if (navigator.share) {
-    navigator.share({ title: 'The Daily Sin', text: q.text, url });
+    navigator.share({ title:'The Daily Sin', text: msg, url });
   } else if (navigator.clipboard) {
-    navigator.clipboard.writeText(url).then(()=>showToast('link copied ✓'));
+    navigator.clipboard.writeText(msg).then(()=>showToast('link copied ✓'));
   } else {
-    showToast('link: '+url);
+    showToast('copy: '+url);
   }
 }
 
 function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2500);
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
 }
 
-// ── LEAD CAPTURE ──
+// ── LEAD ──
 function showLeadCapture() {
   showScreen('lead-screen');
-  // Back button trap
-  history.pushState({ lead: true }, '');
-  window.addEventListener('popstate', handleBackButton, { once: true });
+  history.pushState({lead:true},'');
+  window.addEventListener('popstate', handleBackButton, {once:true});
 }
-
-function handleBackButton(e) {
-  history.pushState({ lead: true }, '');
-  window.addEventListener('popstate', handleBackButton, { once: true });
+function handleBackButton() {
+  history.pushState({lead:true},'');
+  window.addEventListener('popstate', handleBackButton, {once:true});
   document.getElementById('back-popup').classList.add('show');
 }
-
-function closeBackPopup() {
-  document.getElementById('back-popup').classList.remove('show');
-}
+function closeBackPopup() { document.getElementById('back-popup').classList.remove('show'); }
 
 function submitLead() {
-  const name  = document.getElementById('inp-name').value.trim();
-  const phone = document.getElementById('inp-phone').value.trim();
-  const email = document.getElementById('inp-email').value.trim();
-
-  let error = '';
-  if (!name)                                           error = 'name missing.';
-  else if (!/^[0-9]{10}$/.test(phone))                error = 'need a valid 10-digit number.';
-  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) error = 'that email looks off.';
-  else if (!document.getElementById('consent-check').checked) error = 'tick the box first.';
-
-  if (error) {
-    const el = document.querySelector('.consent-text');
-    const orig = el.textContent;
-    el.textContent = error; el.style.color = '#ff6b6b';
-    setTimeout(()=>{ el.textContent=orig; el.style.color=''; }, 2200);
+  const name=document.getElementById('inp-name').value.trim();
+  const phone=document.getElementById('inp-phone').value.trim();
+  const email=document.getElementById('inp-email').value.trim();
+  let error='';
+  if(!name)                                           error='name missing.';
+  else if(!/^[0-9]{10}$/.test(phone))                error='need a valid 10-digit number.';
+  else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) error='that email looks off.';
+  else if(!document.getElementById('consent-check').checked) error='tick the box first.';
+  if(error){
+    const el=document.querySelector('.consent-text'), orig=el.textContent;
+    el.textContent=error; el.style.color='#ff6b6b';
+    setTimeout(()=>{ el.textContent=orig; el.style.color=''; },2200);
     return;
   }
+  const answerMap={};
+  sessionLog.forEach(a=>{ answerMap[a.qid]=a.chose==='left'?'L':'R'; });
+  const answers=ALL_QUESTIONS.map(q=>({ qid:q.id, chose:answerMap[q.id]||'' }));
+  const payload={ session_id:sessionId, timestamp:new Date().toISOString(), name, phone, email, answers };
 
-  // Build answer columns for every question ID
-  const answerMap = {};
-  sessionLog.forEach(a => { answerMap[a.qid] = a.chose==='left' ? 'L' : 'R'; });
-
-  const allQids = ALL_QUESTIONS.map(q=>q.id);
-  const answers = allQids.map(id => ({ qid: id, chose: answerMap[id] || '' }));
-
-  const payload = {
-    session_id: sessionId,
-    timestamp:  new Date().toISOString(),
-    name, phone, email,
-    answers
-  };
-
-  // Hidden form POST to bypass CORS
-  const iframe = document.createElement('iframe');
-  iframe.name = 'submit-frame'; iframe.style.display='none';
-  const form = document.createElement('form');
-  form.method='POST'; form.action=WEBHOOK; form.target='submit-frame';
-  form.style.display='none';
-  const inp = document.createElement('input');
+  const iframe=document.createElement('iframe');
+  iframe.name='submit-frame'; iframe.style.display='none';
+  const form=document.createElement('form');
+  form.method='POST'; form.action=WEBHOOK; form.target='submit-frame'; form.style.display='none';
+  const inp=document.createElement('input');
   inp.type='hidden'; inp.name='data'; inp.value=JSON.stringify(payload);
   form.appendChild(inp);
   document.body.appendChild(iframe); document.body.appendChild(form);
   form.submit();
-
-  setTimeout(()=>{ postLead=true; showScreen('game-screen'); loadQuestion(); }, 800);
+  setTimeout(()=>{ postLead=true; showScreen('game-screen'); loadQuestion(); },800);
 }
 
 // ── END ──
