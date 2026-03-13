@@ -372,8 +372,9 @@ function buildOrder() {
   const first  = pinned.map(id => ALL_QUESTIONS.find(q => q.id===id)).filter(Boolean);
   const rest   = shuffle(ALL_QUESTIONS.filter(q => !pinned.includes(q.id)));
   QUESTIONS    = [...first, ...rest];
+}
 
-  // Deep link — jump to specific question
+function applyDeepLink() {
   const params = new URLSearchParams(window.location.search);
   const deepQ  = params.get('q');
   if (deepQ) {
@@ -381,7 +382,11 @@ function buildOrder() {
     if (idx > 0) {
       const target = QUESTIONS.splice(idx,1)[0];
       QUESTIONS.unshift(target);
+    } else if (idx === -1) {
+      // ID not found — no change, start from beginning
     }
+    // Clear param from URL so refreshing doesnt keep deep linking
+    window.history.replaceState({}, '', window.location.pathname);
   }
 }
 
@@ -405,6 +410,7 @@ function showScreen(id) {
 // ── START ──
 function startGame() {
   if (!musicOn) unlockMusic();
+  applyDeepLink();
   buildDots();
   showScreen('game-screen');
   loadQuestion();
@@ -507,7 +513,7 @@ function handleShare() {
   const url = `${SITE_URL}?q=${q.id}`;
   const msg = `I just did something questionable and I need to know if you would too.\n\n${q.text}\n\n👈 ${q.left}  or  ${q.right} 👉\n\n${url}`;
   if (navigator.share) {
-    navigator.share({ title:'The Daily Sin', text: msg, url });
+    navigator.share({ title:'The Daily Sin', text: msg });
   } else if (navigator.clipboard) {
     navigator.clipboard.writeText(msg).then(()=>showToast('link copied ✓'));
   } else {
